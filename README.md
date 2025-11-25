@@ -15,14 +15,17 @@ The goal is to show **how AP-InA can be integrated into an information system** 
 We treat each bug report as an **incident card** described only by **early / available-at-creation** fields (anti-leakage).
 From these cards, we:
 1. Build **clean incident cards** + **anti-leakage allowlist** + QC reports.
-2. Generate **silver labels** (deterministic rules) to operationalize the candidate meanings **H**.
-3. Create **DEV / HOLDOUT-H** splits.
-4. Calibrate a **gating threshold (τ)** to target a given abstention rate (e.g., 20%), then run the gate to produce:
+   
+<img width="2004" height="1006" alt="image" src="https://github.com/user-attachments/assets/d6dbaac4-6807-4eac-ad88-ec21a062a8cf" />
+
+3. Generate **silver labels** (deterministic rules) to operationalize the candidate meanings **H**.
+4. Create **DEV / HOLDOUT-H** splits.
+5. Calibrate a **gating threshold (τ)** to target a given abstention rate (e.g., 20%), then run the gate to produce:
    - `eligibility_audit.csv`
    - per-incident **trace logs** (`traces/`)
    - per-incident **provenance logs** (`prov/`)
    - figures (decision distribution, p_top histograms, latency proxy)
-5. Evaluate gate behaviour against **GOLD labels** (coverage and abstention metrics).
+6. Evaluate gate behaviour against **GOLD labels** (coverage and abstention metrics).
 
 ---
 
