@@ -25,7 +25,7 @@ These scripts implement the steps described in the paper:
 - `step1_prepare_cards_clean_py.py`  
   Prepare cleaned incident cards from the raw BugAda input, perform basic QC, and build the
   feature allowlist (anti-leakage).
-<img width="2008" height="1014" alt="image" src="https://github.com/user-attachments/assets/2aae5409-c456-4a47-895e-7de178e6dd5e" />
+
 
 - `step2_generate_silver_labels_py.ipynb`  
   Generate **silver labels** (rule-based) used to operationalise the candidate meanings **H**
@@ -171,6 +171,9 @@ As announced in the paper, we provide here the PRISMA diagram of the systematic
 literature review (1990–2025).
 
 ![PRISMA Diagram](./prisma.drawio.jpeg)
+<img width="1571" height="1580" alt="prisma 2 drawio" src="https://github.com/user-attachments/assets/8c337660-9640-4fc0-9a0b-19da5bf9d460" />
+
+![Uploading prisma 2.drawio.png…]()
 
 Additional materials (search queries, screening forms, codebook, Cohen’s κ scripts,
 and raw exports) will be added progressively in a dedicated subfolder of the repository.
