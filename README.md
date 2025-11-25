@@ -176,5 +176,17 @@ A typical provenance record from prov/:
   }
 }
 ---
+A typical provenance record from prov/:
 
+{
+  "resource": "gate_policy",
+  "from_version": "v1.0",
+  "to_version": "v1.1",
+  "changed_by": "ops-L1",
+  "timestamp": "2025-03-20T14:33:11Z",
+  "approval": {
+    "role": "supervisor",
+    "approved": true
+  }
+}
 
