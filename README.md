@@ -1,5 +1,4 @@
-# AP-InA Worked Example – BugAda 
-
+# AP-InA Worked Example
 This repository contains the companion material for the worked example of **AP-InA** presented in:
 
 > **Towards Traceable Meaning in Information Systems**  
