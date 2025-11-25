@@ -17,7 +17,20 @@ Bugzilla/Jira issue is treated as an **incident card** on a “red-light” dash
 - `LICENSE` – license for this repository.
 - `README.md` – this file.
 - `ap_ina_bugada_prototype.ipynb` – original notebook used to prototype the full pipeline.
+## 6. Literature Review – PRISMA Flow
 
+As announced in the paper, we provide here the PRISMA diagram of the systematic
+literature review (1990–2025).
+
+![PRISMA Diagram](./prisma.drawio.jpeg)
+<img width="1571" height="1580" alt="prisma 2 drawio" src="https://github.com/user-attachments/assets/8c337660-9640-4fc0-9a0b-19da5bf9d460" />
+
+![Uploading prisma 2.drawio.png…]()
+
+Additional materials (search queries, screening forms, codebook, Cohen’s κ scripts,
+and raw exports) will be added progressively in a dedicated subfolder of the repository.
+
+<img width="1567" height="841" alt="prisma" src="https://github.com/user-attachments/assets/899c3d80-caff-4416-b18d-e4c52fdc0740" />
 ### 1.1. Scripts (AP-InA pipeline)
 
 These scripts implement the steps described in the paper:
@@ -165,17 +178,4 @@ A typical provenance record from prov/:
 }
 ---
 
-## 6. Literature Review – PRISMA Flow
 
-As announced in the paper, we provide here the PRISMA diagram of the systematic
-literature review (1990–2025).
-
-![PRISMA Diagram](./prisma.drawio.jpeg)
-<img width="1571" height="1580" alt="prisma 2 drawio" src="https://github.com/user-attachments/assets/8c337660-9640-4fc0-9a0b-19da5bf9d460" />
-
-![Uploading prisma 2.drawio.png…]()
-
-Additional materials (search queries, screening forms, codebook, Cohen’s κ scripts,
-and raw exports) will be added progressively in a dedicated subfolder of the repository.
-
-<img width="1567" height="841" alt="prisma" src="https://github.com/user-attachments/assets/899c3d80-caff-4416-b18d-e4c52fdc0740" />
