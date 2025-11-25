@@ -1,59 +1,84 @@
-# AP-InA Worked Example (BugAda / Bugzilla–Jira incidents)
+AP-InA Worked Example (BugAda / Bugzilla–Jira incidents)
 
-This repository provides a small, reproducible **worked example** that instantiates the **AP-InA** minimal criteria
-(**R–A–U–H–T–P–O–I/N**) in an incident-dashboard setting, using BugAda-style Bugzilla/Jira tickets as incident cards.
+This repository provides a reproducible worked example instantiating the
+AP-InA minimal audit criteria (R–A–U–H–T–P–O–I/N) on a dataset inspired by BugAda
+(Bugzilla/Jira incident reports).
 
-It is designed to show **how AP-InA can be integrated into an Information System (IS)** and which **audit artefacts**
-are produced (allowlists, traces, provenance logs, audit tables, and outcome metrics).
+The example demonstrates how AP-InA can be integrated into an Information System (IS)
+and which audit artefacts are produced: allowlists, versioned resources, traces,
+provenance logs, and eligibility/audit tables.
+📄 Related paper
 
-## Related paper
-**Towards Traceable Meaning in Information Systems** (Deo Munduku, Elsa Negre).  
-Accepted at **ICIM 2026**, University of Oxford, Oxford, UK (Mar 27–29, 2026).  
-*To appear in the conference proceedings.*  
-(We will update the final bibliographic reference once official metadata is available.)
+Towards Traceable Meaning in Information Systems
+Déo Munduku, Elsa Negre
+Accepted at ICIM 2026, University of Oxford (March 27–29, 2026).
+To appear in Springer CCIS.
 
-## What the pipeline does (high level)
-We treat each bug report as an **incident card** described only by **early / available-at-creation** fields (**anti-leakage**).
-Then we:
+We will update this repository with the final camera-ready version and metadata once available.
+1. 📚 Literature Review Reproducibility Package
 
-1. **Prepare clean incident cards** + QC reports + anti-leakage allowlist  
-2. Generate **silver labels** (deterministic rules) to operationalize candidate meanings **H**  
-3. Create **DEV / HOLDOUT-H** splits (deterministic seed)  
-4. Calibrate a **gating threshold (τ)** to target an abstention rate (e.g., 20%), run the gate, and generate:
-   - `eligibility_audit.csv`
-   - per-incident **trace logs** (`traces/`)
-   - per-incident **provenance logs** (`prov/`)
-   - figures (decision distribution, p_top histograms, latency, sweep curves)
-5. Evaluate gate behaviour against **GOLD labels** (coverage & abstention metrics)
+This section contains all artefacts promised in the article.
 
-## Repository content
-### Code
-Current scripts (recommended names / mapping):
-- `src/step1_prepare_cards_clean.py`  (prepare cards + QC + datacard + allowlist)
-- `src/step2_generate_silver_labels.py` (silver labels)
-- `src/step3_make_splits_dev_holdoutH.py` (DEV/H split)
-- `src/step4_calibrate_tau_and_run_protocol.py` (τ sweep + protocol run + traces/prov)
-- `src/step5_eval_gate_vs_gold.py` (gate vs gold evaluation)
+1.1 PRISMA Flow Diagram
 
-> Note: these scripts were initially developed in a single Colab notebook and exported here.
+The PRISMA diagram used in the paper is available here:
 
-### Sample artefacts (lightweight)
-We include a small `artefacts_sample/` folder with:
-- `DATACARD.md`, `dataset_stats.json`, `feature_allowlist.txt`
-- a few key figures used for the paper
-- a small sample of `traces/` and `prov/` (10–20 incidents)
-- `eligibility_audit.csv` (DEV and/or HOLDOUT-H)
+<img width="1571" height="1580" alt="prisma 2 drawio" src="https://github.com/user-attachments/assets/775e85a0-1810-4843-8bc4-0f32488c6bbc" />
 
-### Full artefacts (optional)
-Full generated outputs may be large. For convenience, we provide them as **Release assets** (ZIP), not tracked in git.
 
-## How to run (typical)
-Python 3.10+ recommended.
 
-```bash
-pip install -r requirements.txt
-python src/step1_prepare_cards_clean.py
-python src/step2_generate_silver_labels.py
-python src/step3_make_splits_dev_holdoutH.py
-python src/step4_calibrate_tau_and_run_protocol.py
-python src/step5_eval_gate_vs_gold.py
+2. 🧪 AP-InA Worked Example (BugAda)
+
+This example shows how AP-InA operates on incident cards.
+
+⸻
+
+2.1 📦 Repository Structure
+.
+├── src/
+│   ├── step1_prepare_cards_clean.py
+│   ├── step2_generate_silver_labels.py
+│   ├── step3_make_splits_dev_holdoutH.py
+│   ├── step4_calibrate_tau_and_run_protocol.py
+│   └── step5_eval_gate_vs_gold.py
+│
+├── artefacts_sample/ final_bugada_H_tau045
+│   ├── DATACARD.md
+│   ├── dataset_stats.json
+│   ├── feature_allowlist.txt
+│   ├── eligibility_audit.csv
+│   ├── traces_sample/         ← 10-20 trace examples
+│   └── prov_sample/           ← 10-20 provenance examples
+│
+├── releases/
+│   └── final_bugada_H_tau045.zip   ← (Full traces / full prov / resources)
+│
+└── README.md
+
+Example of AP-InA Trace (T)
+
+This is one of the JSON files inside
+final_bugada_H_tau045/traces/:
+{
+   "episode_id": "BUG-10954",
+   "ts": "1999-07-30T22:55:51Z",
+   "input": {
+      "title": "[BUGS] Settings UI RESOLVED",
+      "component": "Settings UI",
+      "severity": "medium",
+      "desc_len": 46,
+      "has_keyword_crash": false,
+      "security_flag": false,
+      ...
+   },
+   "context": {
+      "team": "ops-L1",
+      "recent_incidents_1h": 0,
+      "policy": "policy@tau=0.45",
+      "policy_decl": "T=0.2; tau=0.45; delta=0.15"
+   },
+   "branch_scores": {
+      "m": { "release_regression": 0.0, "infra_instability": 0.0, ... },
+      "c": { "release_regression": 0.0, "infra_instability": 0.0, ... }
+   }
+}
