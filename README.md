@@ -22,8 +22,7 @@ Bugzilla/Jira issue is treated as an **incident card** on a “red-light” dash
 As announced in the paper, we provide here the PRISMA diagram of the systematic
 literature review (1990–2025).
 
-![PRISMA Diagram](./prisma.drawio.jpeg)
-<img width="1571" height="1580" alt="prisma 2 drawio" src="https://github.com/user-attachments/assets/8c337660-9640-4fc0-9a0b-19da5bf9d460" />
+
 
 ![Uploading prisma 2.drawio.png…]()
 
