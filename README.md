@@ -1,46 +1,59 @@
-# ap-ina-bugada-prototype-worked-example
-Reproducible worked example for AP-InA: code, config, seeds, and generated audit artefacts (traces, provenance, metrics)
-# AP-InA Worked Example (BugAda / Bugzilla-Jira incidents)
+# AP-InA Worked Example (BugAda / Bugzilla–Jira incidents)
 
-This repository provides a small, reproducible prototype that instantiates the **AP-InA** minimal criteria
-(**R–A–U–H–T–P–O–I/N**) on an incident dashboard setting, using BugAda-style Bugzilla/Jira tickets as incident cards.
+This repository provides a small, reproducible **worked example** that instantiates the **AP-InA** minimal criteria
+(**R–A–U–H–T–P–O–I/N**) in an incident-dashboard setting, using BugAda-style Bugzilla/Jira tickets as incident cards.
 
-The goal is to show **how AP-InA can be integrated into an information system** and what **audit artefacts** are produced
-(allowlists, update records, traces, provenance logs, and outcome metrics).
+It is designed to show **how AP-InA can be integrated into an Information System (IS)** and which **audit artefacts**
+are produced (allowlists, traces, provenance logs, audit tables, and outcome metrics).
 
----
+## Related paper
+**Towards Traceable Meaning in Information Systems** (Deo Munduku, Elsa Negre).  
+Accepted at **ICIM 2026**, University of Oxford, Oxford, UK (Mar 27–29, 2026).  
+*To appear in the conference proceedings.*  
+(We will update the final bibliographic reference once official metadata is available.)
 
-## What this prototype does (high-level)
+## What the pipeline does (high level)
+We treat each bug report as an **incident card** described only by **early / available-at-creation** fields (**anti-leakage**).
+Then we:
 
-We treat each bug report as an **incident card** described only by **early / available-at-creation** fields (anti-leakage).
-From these cards, we:
-1. Build **clean incident cards** + **anti-leakage allowlist** + QC reports.
-   
-<img width="2004" height="1006" alt="image" src="https://github.com/user-attachments/assets/d6dbaac4-6807-4eac-ad88-ec21a062a8cf" />
-
-3. Generate **silver labels** (deterministic rules) to operationalize the candidate meanings **H**.
-4. Create **DEV / HOLDOUT-H** splits.
-5. Calibrate a **gating threshold (τ)** to target a given abstention rate (e.g., 80%), then run the gate to produce:
-   <img width="567" height="455" alt="fig_abstention_vs_tau" src="https://github.com/user-attachments/assets/71ddd30e-9448-41ba-93ba-e510af7c3dcf" />
-
+1. **Prepare clean incident cards** + QC reports + anti-leakage allowlist  
+2. Generate **silver labels** (deterministic rules) to operationalize candidate meanings **H**  
+3. Create **DEV / HOLDOUT-H** splits (deterministic seed)  
+4. Calibrate a **gating threshold (τ)** to target an abstention rate (e.g., 20%), run the gate, and generate:
    - `eligibility_audit.csv`
    - per-incident **trace logs** (`traces/`)
-     <img width="2250" height="1048" alt="image" src="https://github.com/user-attachments/assets/19fd624c-465c-4e9b-a96b-ebd5c319919c" />
-
    - per-incident **provenance logs** (`prov/`)
-  
-7. Evaluate gate behaviour against **GOLD labels** (coverage and abstention metrics).
+   - figures (decision distribution, p_top histograms, latency, sweep curves)
+5. Evaluate gate behaviour against **GOLD labels** (coverage & abstention metrics)
 
----
+## Repository content
+### Code
+Current scripts (recommended names / mapping):
+- `src/step1_prepare_cards_clean.py`  (prepare cards + QC + datacard + allowlist)
+- `src/step2_generate_silver_labels.py` (silver labels)
+- `src/step3_make_splits_dev_holdoutH.py` (DEV/H split)
+- `src/step4_calibrate_tau_and_run_protocol.py` (τ sweep + protocol run + traces/prov)
+- `src/step5_eval_gate_vs_gold.py` (gate vs gold evaluation)
 
-## Repository structure (suggested)
+> Note: these scripts were initially developed in a single Colab notebook and exported here.
 
-```text
-scripts/
-  01_prepare_cards_antileakage.py
-  02_generate_silver_labels.py
-  03_make_splits_dev_holdout.py
-  04_calibrate_tau_and_run_gate.py
-  05_evaluate_gate_vs_gold.py
-assets/                 # optional: example figures for the paper
-docs/                   # optional: datacards, notes
+### Sample artefacts (lightweight)
+We include a small `artefacts_sample/` folder with:
+- `DATACARD.md`, `dataset_stats.json`, `feature_allowlist.txt`
+- a few key figures used for the paper
+- a small sample of `traces/` and `prov/` (10–20 incidents)
+- `eligibility_audit.csv` (DEV and/or HOLDOUT-H)
+
+### Full artefacts (optional)
+Full generated outputs may be large. For convenience, we provide them as **Release assets** (ZIP), not tracked in git.
+
+## How to run (typical)
+Python 3.10+ recommended.
+
+```bash
+pip install -r requirements.txt
+python src/step1_prepare_cards_clean.py
+python src/step2_generate_silver_labels.py
+python src/step3_make_splits_dev_holdoutH.py
+python src/step4_calibrate_tau_and_run_protocol.py
+python src/step5_eval_gate_vs_gold.py
