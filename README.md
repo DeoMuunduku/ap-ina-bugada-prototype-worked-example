@@ -121,9 +121,7 @@ Example trace (single episode):
   "decision": "abstain"
 }
   
-  Example trace and provenance 
   
-<img width="2846" height="1640" alt="image" src="https://github.com/user-attachments/assets/57845caf-f3f9-4b54-889f-35b9caf51193" />
 
 ---
 
