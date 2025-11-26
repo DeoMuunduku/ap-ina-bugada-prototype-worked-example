@@ -89,7 +89,7 @@ and raw exports) will be added progressively in a dedicated subfolder of the rep
 - Additional summaries (optional)  
   e.g., `metrics.json`, `gate_outputs.csv`, figures used in the Discussion section.
 
-## 6. Example trace and provenance (for reviewers)
+## 6. “Example trace and provenance (demonstration purpose)
 
 Example trace (single episode):
 
@@ -121,7 +121,7 @@ Example trace (single episode):
   "decision": "abstain"
 }
   
-  Example trace and provenance (for reviewers)
+  Example trace and provenance 
   
 <img width="2846" height="1640" alt="image" src="https://github.com/user-attachments/assets/57845caf-f3f9-4b54-889f-35b9caf51193" />
 
@@ -211,11 +211,6 @@ python step4_calibrate_tau_and_run_protocol_py.py
 python step5_eval_gate_vs_gold.py
 
 
-
-4. Example trace and provenance (for reviewers)
-<img width="2846" height="1640" alt="image" src="https://github.com/user-attachments/assets/e24ab128-45f1-4be4-b37a-9263bd559429" />
-
-
 {
   "episode_id": "BUGS-10954",
   "ts": "1999-07-30T22:55:51Z",
@@ -272,12 +267,12 @@ For questions about the code or artefacts, please contact:
 
 Déo Munduku – deo.munduku@lamsade.dauphine.fr
 
-# AP-InA Worked Example (Red-Light Dashboard)
+
 
 This repository contains the companion material for the worked example of **AP-InA** presented in:
 
 > **Towards Traceable Meaning in Information Systems**  
-> D. Munduku, E. Negre – accepted at **ICIM 2026**(accept), University of Oxford (27–29 March 2026).  
+> D. Munduku, E. Negre – accepted at **ICIM 2026**, University of Oxford (27–29 March 2026).  
 > To appear in Springer CCIS.
 
 
